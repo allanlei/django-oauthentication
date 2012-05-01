@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+	<div>
+		<select id="serviceSelector" name="service">
+			<option class="hidden" value="default">Username / Password</option>
+			<option class="hidden" value="openid">OpenID</option>
+			<option value="googleapps">Google Apps</option>
+			<option value="openid-googleapps">Google Apps OpenID</option>
+			<option selected value="oauth2-googleapps">Google Apps OAuth 2.0</option>
+		</select>
+	</div>
+
+	<form method="POST" action="#" class="login hidden" id="default">
+		<header></header>
+		
+		<fieldset>
+			<label for="username">
+			Username <span class="ico"><img src="{% static 'img/user.png' %}" alt="Username Icon" border="0" /></span>
+			</label>
+			<input type="text" name="username" id="username" required autofocus>
+			<label for="password">
+			Password <span class="ico"><img src="{% static 'img/pass.png' %}" alt="Password Icon" border="0" /></span>
+			</label>
+			<input type="password" name="password" id="password" required>
+		</fieldset>
+
+		<fieldset>
+			<span class="forgot-password"><a href="#">Forgot Password</a></span>
+			<button type=submit class="loginButton">>>&nbsp;&nbsp;&nbsp;Login</button>
+		</fieldset>
+	</form>
+
+	<form method="POST" action="#" class="login hidden" id="openid">
+		<header>
+			<h4>OpenID</h4>
+		</header>
+
+		<fieldset>
+			<label for="password">
+			Password <span class="ico"><img src="{% static 'img/pass.png' %}" alt="Password Icon" border="0" /></span>
+			</label>
+			<input type="password" name="password" id="password" required>
+		</fieldset>
+
+		<fieldset>
+			<span class="forgot-password"><a href="#">Forgot Password</a></span>
+			<button type=submit class="loginButton">>>&nbsp;&nbsp;&nbsp;Login</button>
+		</fieldset>
+	</form>
+
+	<form method="POST" action="#" class="login hidden" id="openid-googleapps">
+		<header>
+			<h4>Google Apps OpenID</h4>
+		</header>
+
+		<fieldset>
+			<label for="domain">
+			Domain <span class="ico"><img src="{% static 'img/user.png' %}" alt="Username Icon" border="0" /></span>
+			</label>
+			<input type="text" name="domain" class="domain" title="domain name" placeholder="example.com" pattern="^[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.(([a-zA-Z]{2,3})|(aero|coop|info|museum|name))$" required autofocus>
+		</fieldset>
+
+		<fieldset>
+			<span class="signup"><a href="#">Don't have a Google Apps account?</a></span>
+			<button type=submit class="loginButton">>>&nbsp;&nbsp;&nbsp;Login</button>
+		</fieldset>
+	</form>
+
+	<form method="POST" action="{% url accounts:oauth2:googleapps:login %}" class="login hidden" id="oauth2-googleapps">
+	    {% csrf_token %}
+		<header>
+			<h4>Google Apps OAuth 2.0</h4>
+		</header>
+
+		<fieldset>
+			<label for="domain">
+			Domain <span class="ico"><img src="{% static 'img/user.png' %}" alt="Username Icon" border="0" /></span>
+			</label>
+			<input type="text" name="domain" class="domain" title="domain name" placeholder="example.com" pattern="^[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.(([a-zA-Z]{2,3})|(aero|coop|info|museum|name))$" required autofocus>
+		</fieldset>
+
+		<fieldset>
+			<span class="signup"><a href="#">Don't have a Google Apps account?</a></span>
+			<button type=submit class="loginButton">>>&nbsp;&nbsp;&nbsp;Login</button>
+		</fieldset>
+	</form>
+
+	<form method="POST" action="#" class="login hidden" id="googleapps">
+		<header>
+			<h4>Google Apps</h4>
+		</header>
+
+		<fieldset>
+			<label for="domain">
+			Domain <span class="ico"><img src="{% static 'img/user.png' %}" alt="Username Icon" border="0" /></span>
+			</label>
+			<input type="text" name="domain" class="domain" title="domain name" placeholder="example.com" pattern="^[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.(([a-zA-Z]{2,3})|(aero|coop|info|museum|name))$" required autofocus>
+		</fieldset>
+
+		<fieldset>
+			<span class="signup"><a href="#">Don't have a Google Apps account?</a></span>
+			<button type=submit class="loginButton">>>&nbsp;&nbsp;&nbsp;Login</button>
+			<div style="clear:both; height: 1em;"></div>
+			<button type=submit class="loginButton small">>>&nbsp;&nbsp;&nbsp;Login with OAuth</button>
+			<button type=submit class="loginButton small">>>&nbsp;&nbsp;&nbsp;Login with OpenID</button>
+		</fieldset>
+	</form>
+{% endblock content %}

@@ -1,0 +1,15 @@
+.signup, .forgot-password{
+    margin:8px 0;
+	float: left;
+}
+
+.loginButton.small{
+    font-size: 98%;
+    height: 18px;
+    letter-spacing: 2px;
+}
+
+.loginButton{
+    float: right;
+    margin-right: 0.3em;
+}

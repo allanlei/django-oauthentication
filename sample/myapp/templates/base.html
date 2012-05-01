@@ -1,0 +1,42 @@
+{% load static %}
+<!doctype html>
+<!--[if lt IE 7 ]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>		<html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>		<html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<title>django-auth-oauth2 sample</title>
+		<meta name="description" content="Demo of django-auth-oauth2">
+		<meta name="author" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="{% static 'css/style.css' %}">
+		<link rel="stylesheet" href="{% static 'css/login.css' %}">
+		<script src="{% static 'js/libs/modernizr-1.7.min.js' %}"></script>
+	</head>
+
+	<body>
+		<div id="container">
+			<div id="main" role="main">
+			{% if request.user and request.user.is_authenticated %}
+			<span><a href="{% url accounts:logout %}">Logout</a></span>
+			{% else %}
+			<span><a href="{% url accounts:login %}">Login</a></span>
+			{% endif %}
+			{% block content %}{% endblock content %}
+			</div>
+		</div>
+		
+		{% comment %}
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+		{% endcomment %}
+		<script>window.jQuery || document.write('<script src="{% static 'js/libs/jquery-1.7.1.min.js' %}"><\/script>')</script>
+		<script src="{% static 'js/plugins.js' %}"></script>
+		<script src="{% static 'js/script.js' %}"></script>
+
+		<!--[if lt IE 7 ]>
+			<script src="{% static 'js/libs/dd_belatedpng.js' %}"></script>
+			<script>DD_belatedPNG.fix("img, .png_bg"); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
+		<![endif]-->
+	</body>
+</html>

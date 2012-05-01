@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p>Hello {{ user }},</p>
+    {% for key, val in request.session.items %}
+    {% if key == '_auth_user_backend' %}
+    <p>You logged in using {{ val }}</p>
+    {% endif %}
+    {% endfor %}
+{% endblock %}
