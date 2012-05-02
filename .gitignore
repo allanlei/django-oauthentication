@@ -34,3 +34,5 @@ nosetests.xml
 
 
 *.db
+.env
+.foreman
