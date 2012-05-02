@@ -121,12 +121,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     
     'myapp',
-    
-    'oauthentication',
-    
-    
-#    'oauthentication.contrib.google',
-#    'oauthentication.contrib.googleapps',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -193,13 +187,18 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 AUTHENTICATION_BACKENDS = (
-    'oauthentication.contrib.googleapps.backends.OAuth2AuthenticationBackend',
-#    'oauthentication.contrib.facebook.backends.OAuth2AuthenticationBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 
 
-from django.core.urlresolvers import reverse_lazy as reverse
-OAUTH2_GOOGLEAPPS_CLIENT_ID = os.environ.get('OAUTH2_GOOGLEAPPS_CLIENT_ID', None)
-OAUTH2_GOOGLEAPPS_CLIENT_SECRET = os.environ.get('OAUTH2_GOOGLEAPPS_CLIENT_SECRET', None)
-OAUTH2_GOOGLEAPPS_REDIRECT_URI = reverse('accounts:oauth2:googleapps:authenticate')
+
+
+
+INSTALLED_APPS += (
+#    'oauthentication',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'oauthentication.contrib.oauth2.google.backends.EmailAuthenticationBackend',
+    'oauthentication.contrib.oauth2.google.backends.GPlusAuthenticationBackend',
+) + AUTHENTICATION_BACKENDS

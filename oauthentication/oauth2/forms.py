@@ -3,10 +3,11 @@ from django.core.exceptions import ImproperlyConfigured
 from django.contrib.auth import authenticate
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.conf import settings
+from django.contrib.auth import forms as auth
 
-import base
-import requests
-import simplejson as json
+#import base
+#import requests
+#import simplejson as json
 import logging
 logger = logging.getLogger(__name__)
 
@@ -15,7 +16,7 @@ logger = logging.getLogger(__name__)
 class LoginForm(base.LoginForm):
     pass
 
-class AuthenticationForm(base.AuthenticationForm):
+class AuthenticationForm(auth.AuthenticationForm):
     error_messages = {
         'invalid_login': _('No account could be found with that OAuth account'),
         'inactive': _('This account is inactive.'),
